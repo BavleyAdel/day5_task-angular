@@ -1,0 +1,32 @@
+<h1 class="m-3 text-center">Users</h1>
+<div class="container">
+  <label for="exampleFormControlInput1" class="form-label">Search</label>
+  <div class="mb-3 d-flex">
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Search User..."
+      [(ngModel)]="searchText">
+    <button type="button" class="btn btn-primary mx-3" (click)="searchUser(searchText)"> Search</button>
+  </div>
+
+  <div class="row d-flex justify-content-center">
+
+    @for (user of users; track $index) {
+    @if(user.found){
+    <div class="card d-flex flex-column align-items-center m-3" style="width: 18rem;">
+      <img [src]="user.image" class="card-img-top img-fluid m-3"
+        style="border: 1px solid black; border-radius: 50%; max-width: 100px;">
+      <div class="card-body d-flex flex-column align-items-center">
+        <h3>{{user.username}}</h3>
+        <h5>{{user.email}}</h5>
+        <h6>{{user.phone}}</h6>
+        @if (user.is_verified) {
+        <mat-icon class="text-success">star</mat-icon>
+        }@else{
+        <mat-icon class="text-danger">star_border</mat-icon>
+        }
+      </div>
+    </div>
+    }
+    }
+
+  </div>
+</div>
